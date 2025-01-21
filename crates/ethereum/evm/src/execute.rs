@@ -470,6 +470,7 @@ mod tests {
         eip4788::{BEACON_ROOTS_ADDRESS, BEACON_ROOTS_CODE, SYSTEM_ADDRESS},
         eip7002::{WITHDRAWAL_REQUEST_PREDEPLOY_ADDRESS, WITHDRAWAL_REQUEST_PREDEPLOY_CODE},
     };
+    use foldhash::{HashMap, HashMapExt};
     use reth_chainspec::{ChainSpecBuilder, ForkCondition};
     use reth_primitives::{
         constants::{EMPTY_ROOT_HASH, ETH_TO_WEI},
@@ -481,7 +482,6 @@ mod tests {
     use reth_testing_utils::generators::{self, sign_tx_with_key_pair};
     use revm_primitives::{b256, fixed_bytes, Bytes, BLOCKHASH_SERVE_WINDOW};
     use secp256k1::{Keypair, Secp256k1};
-    use std::collections::HashMap;
 
     fn create_state_provider_with_beacon_root_contract() -> StateProviderTest {
         let mut db = StateProviderTest::default();
@@ -496,7 +496,7 @@ mod tests {
             BEACON_ROOTS_ADDRESS,
             beacon_root_contract_account,
             Some(BEACON_ROOTS_CODE.clone()),
-            HashMap::new(),
+            HashMapExt::new(),
         );
 
         db

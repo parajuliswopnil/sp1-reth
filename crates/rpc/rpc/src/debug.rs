@@ -39,9 +39,10 @@ use revm::{
 use revm_inspectors::tracing::{
     FourByteInspector, MuxInspector, TracingInspector, TracingInspectorConfig, TransactionContext,
 };
-use revm_primitives::{keccak256, HashMap};
+use revm_primitives::keccak256;
 use std::sync::Arc;
 use tokio::sync::{AcquireError, OwnedSemaphorePermit};
+use foldhash::{HashMap, HashMapExt};
 
 /// `debug` API implementation.
 ///
@@ -659,7 +660,7 @@ where
                 let witness = state_provider
                     .witness(HashedPostState::default(), hashed_state)
                     .map_err(Into::into)?;
-                Ok(witness)
+                Ok(HashMap::from_iter(witness))
             })
             .await
     }

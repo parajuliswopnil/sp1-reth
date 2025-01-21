@@ -1,4 +1,4 @@
-use crate::precompile::HashMap;
+use foldhash::{HashMap, HashMapExt};
 use reth_chainspec::{ChainSpec, EthereumHardforks};
 use reth_consensus_common::calc;
 use reth_primitives::{Address, Block, Withdrawal, Withdrawals, U256};
@@ -13,7 +13,7 @@ pub fn post_block_balance_increments(
     block: &Block,
     total_difficulty: U256,
 ) -> HashMap<Address, u128> {
-    let mut balance_increments = HashMap::new();
+    let mut balance_increments: HashMap<Address, u128> = HashMapExt::new();
 
     // Add block rewards if they are enabled.
     if let Some(base_block_reward) =

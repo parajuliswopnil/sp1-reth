@@ -12,9 +12,10 @@ use reth_primitives::{
 use reth_trie::root::{state_root_unhashed, storage_root_unhashed};
 use revm::{
     db::BundleState,
-    primitives::{AccountInfo, HashMap},
+    primitives::AccountInfo,
 };
 use std::str::FromStr;
+use std::collections::HashMap;
 
 /// Assert genesis block
 pub fn assert_genesis_block<DB: Database>(provider: &DatabaseProviderRW<DB>, g: SealedBlock) {
@@ -195,7 +196,7 @@ fn block1(number: BlockNumber) -> (SealedBlockWithSenders, ExecutionOutcome) {
             .revert_account_info(number, account1, Some(None))
             .state_present_account_info(account2, info)
             .revert_account_info(number, account2, Some(None))
-            .state_storage(account1, HashMap::from([(slot, (U256::ZERO, U256::from(10)))]))
+            .state_storage(account1, HashMap::from_iter([(slot, (U256::ZERO, U256::from(10)))]))
             .build(),
         vec![vec![Some(Receipt {
             tx_type: TxType::Eip2930,
@@ -249,7 +250,7 @@ fn block2(
                 account,
                 AccountInfo { nonce: 3, balance: U256::from(20), ..Default::default() },
             )
-            .state_storage(account, HashMap::from([(slot, (U256::ZERO, U256::from(15)))]))
+            .state_storage(account, HashMap::from_iter([(slot, (U256::ZERO, U256::from(15)))]))
             .revert_account_info(
                 number,
                 account,

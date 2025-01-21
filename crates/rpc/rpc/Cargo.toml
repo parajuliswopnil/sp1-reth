@@ -75,6 +75,8 @@ serde.workspace = true
 thiserror.workspace = true
 derive_more.workspace = true
 
+foldhash = {workspace = true}
+
 [dev-dependencies]
 reth-evm-ethereum.workspace = true
 reth-testing-utils.workspace = true

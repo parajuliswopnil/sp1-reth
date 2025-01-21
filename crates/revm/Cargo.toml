@@ -22,6 +22,8 @@ reth-prune-types.workspace = true
 reth-storage-api.workspace = true
 reth-trie = { workspace = true, optional = true }
 
+#additional 
+foldhash = {workspace = true}
 # revm
 revm.workspace = true
 

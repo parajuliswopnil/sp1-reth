@@ -560,3 +560,7 @@ serial_test = "3"
 similar-asserts = "1.5.0"
 tempfile = "3.8"
 test-fuzz = "5"
+
+
+# additional 
+foldhash = "0.1.4"

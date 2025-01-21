@@ -122,12 +122,8 @@ impl StateProofProvider for StateProviderTest {
         unimplemented!("proof generation is not supported")
     }
 
-    fn witness(
-        &self,
-        _overlay: HashedPostState,
-        _target: HashedPostState,
-    ) -> ProviderResult<HashMap<B256, Bytes>> {
-        unimplemented!("witness generation is not supported")
+    fn witness(&self,overlay:HashedPostState,target:HashedPostState,) -> ProviderResult<std::collections::HashMap<B256,Bytes> > {
+        unimplemented!("witness not supported")
     }
 }
 

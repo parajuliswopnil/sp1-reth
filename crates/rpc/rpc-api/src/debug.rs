@@ -7,7 +7,7 @@ use reth_rpc_types::{
     },
     Block, Bundle, StateContext, TransactionRequest,
 };
-use std::collections::HashMap;
+use foldhash::HashMap;
 
 /// Debug rpc interface.
 #[cfg_attr(not(feature = "client"), rpc(server, namespace = "debug"))]
